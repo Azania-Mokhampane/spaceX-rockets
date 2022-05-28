@@ -10,14 +10,14 @@ const NavBar = () => {
             <Link href="/">
               <img
                 className="w-96 p-2 hidden md:block"
-                src="/spacex-logo.png"
+                src="/img/spacex-logo.png"
                 alt=""
               />
             </Link>
             <Link href="/">
               <img
                 className="block md:hidden w-32 p-2"
-                src="/mini-spacex-logo.png"
+                src="/img/mini-spacex-logo.png"
                 alt=""
               />
             </Link>
