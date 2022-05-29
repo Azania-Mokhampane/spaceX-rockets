@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar/navbar";
 import Card from "../components/UI/card";
 import Button from "../components/UI/button";
 import Loader from "../components/UI/loader";
+import Image from "next/image";
 
 interface INEXTLAUNCH {
   launchNext: {
@@ -40,12 +41,21 @@ const NextLaunch = () => {
     <>
       <NavBar />
       <Card>
-        <div className="font-bold text-center">
+        <div className="font-bold text-center md:text-2xl">
           <h1>Next Rocket Launch</h1>
         </div>
         {launchDetails && (launchDetails.launchNext.details == null) == null ? (
-          <div className="">
-            <p>No details found :(</p>
+          <div className="flex flex-col items-center">
+            <div className="w-56 md:w-80">
+              <Image
+                src="/icons/No_data.svg"
+                layout="responsive"
+                width={300}
+                height={300}
+                alt="not found"
+              />
+            </div>
+            <p className="md:text-lg">No details found :(</p>
           </div>
         ) : (
           <div className="p-2 ">
