@@ -1,6 +1,6 @@
 # SpaceX-Rocket-Launches
 
-#Live Demo
+# Live Demo
 https://spacex-development.netlify.app/
 
 ## Getting Started
