@@ -2,15 +2,26 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import NavBar from "../NavBar/navbar";
 import LaunchDate from "../UI/launchDate";
-import { client } from "../../pages/_app";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Card from "../UI/card";
-import { SPACEX_PAYLOAD } from "../../graphql/queries";
+import { SPACEX_LAUNCH_DATES } from "../../graphql/queries";
+import Loader from "../UI/loader";
+
+interface ILAUNCHDATE {
+  launchLatest: {
+    launch_date_local?: string;
+  };
+  launchNext: {
+    launch_date_local?: string;
+  };
+}
 
 const LandingPage = () => {
-  const [LaunchesData, setLaunchesData] = useState<any>({});
+  const [LaunchesData, setLaunchesData] = useState<
+    ILAUNCHDATE | null | undefined
+  >();
 
-  const { data, loading, error } = useQuery(SPACEX_PAYLOAD);
+  const { data, loading, error } = useQuery(SPACEX_LAUNCH_DATES);
 
   useEffect(() => {
     if (data) {
@@ -18,25 +29,15 @@ const LandingPage = () => {
     }
   }, [data]);
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
   if (error) {
     return <div>Error fetching data</div>;
   }
-  // client.query({
-  //     query: gql`
-  //       query {
-  //         launchLatest {
-  //           launch_date_local
-  //         }
-  //         launchNext {
-  //           launch_date_local
-  //         }
-  //       }
-  //     `,
-  //   })
-  //   .then((result) => setLaunchesData(result.data));
-  console.log("DATA:", data);
 
   return (
     <>
@@ -61,22 +62,20 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 gap-5 p-5 md:w-80 font-semibold md:flex-row">
             <div className="bg-gray-200 p-5 text-center rounded-md ">
               <Link href="/last-launch">
-                <h1 className="text-lg">Last Rocket Launch</h1>
+                <h1 className="text-lg cursor-pointer">Last Rocket Launch</h1>
               </Link>
               <LaunchDate
                 date={
                   LaunchesData && LaunchesData.launchLatest.launch_date_local
                 }
-                // date={"2020-12-06T11:17:00-05:00"}
               />
             </div>
             <div className="bg-gray-200 p-5 text-center rounded-md ">
               <Link href="/next-launch">
-                <h1 className="text-lg">Next Rocket Launch</h1>
+                <h1 className="text-lg cursor-pointer">Next Rocket Launch</h1>
               </Link>
               <LaunchDate
-                date={LaunchesData.launchNext.launch_date_local}
-                // date={"2020-12-06T11:17:00-05:00"}
+                date={LaunchesData && LaunchesData.launchNext.launch_date_local}
               />
             </div>
           </div>

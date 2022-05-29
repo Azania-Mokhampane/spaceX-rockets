@@ -1,24 +1,41 @@
-import React, { useState } from "react";
-import { gql } from "@apollo/client";
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { SPACEX_NEXT_LAUNCH } from "../graphql/queries";
 import NavBar from "../components/NavBar/navbar";
-import { client } from "./_app";
 import Card from "../components/UI/card";
+import Button from "../components/UI/button";
+import Loader from "../components/UI/loader";
+
+interface INEXTLAUNCH {
+  launchNext: {
+    details?: string;
+  };
+}
 
 const NextLaunch = () => {
-  const [launchDetails, setLaunchDetails] = useState<any>({});
+  const [launchDetails, setLaunchDetails] = useState<
+    INEXTLAUNCH | null | undefined
+  >();
 
-  client
-    .query({
-      query: gql`
-        query {
-          launchNext {
-            details
-          }
-        }
-      `,
-    })
-    .then((result) => setLaunchDetails(result.data.launchNext));
-  // console.log(launchDetails.details);
+  const { loading, data, error } = useQuery(SPACEX_NEXT_LAUNCH);
+
+  useEffect(() => {
+    if (data) {
+      setLaunchDetails(data);
+    }
+  }, [data]);
+
+  if (loading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+  if (error) {
+    return <div>Error fetching data</div>;
+  }
+
   return (
     <>
       <NavBar />
@@ -26,16 +43,17 @@ const NextLaunch = () => {
         <div className="font-bold text-center">
           <h1>Next Rocket Launch</h1>
         </div>
-        {launchDetails.details == null ? (
+        {launchDetails && (launchDetails.launchNext.details == null) == null ? (
           <div className="">
             <p>No details found :(</p>
           </div>
         ) : (
           <div className="p-2 ">
-            <p>{launchDetails.details}</p>
+            <p>{launchDetails && launchDetails.launchNext.details}</p>
           </div>
         )}
       </Card>
+      <Button />
     </>
   );
 };
