@@ -45,7 +45,6 @@ Install the projects dependencies
 yarn
 ```
 
-````
 Start the projects development server
 ```bash
 yarn dev
