@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar/navbar";
 import Card from "../components/UI/card";
 import Button from "../components/UI/button";
 import Loader from "../components/UI/loader";
+import Image from "next/image";
 
 interface ILASTLAUNCH {
   launchLatest: {
@@ -36,16 +37,26 @@ const LastLaunch = () => {
     <>
       <NavBar />
       <Card>
-        <div className="font-bold text-center">
+        <div className="font-bold text-center md:text-2xl">
           <h1>Last Rocket Launch</h1>
         </div>
         {launchDetails && launchDetails.launchLatest.details == null ? (
           <div className="flex flex-col items-center">
-            <img className="w-56" src="/icons/No_data.svg" alt="not found " />
-            <p>No details found :(</p>
+            <div className="w-56 md:w-80">
+              <Image
+                src="/icons/No_data.svg"
+                layout="responsive"
+                width={300}
+                height={300}
+                alt="not found"
+              />
+            </div>
+            <p className="md:text-lg">No details found :(</p>
           </div>
         ) : (
-          <p>{launchDetails && launchDetails.launchLatest.details}</p>
+          <div className="p-2 ">
+            <p>{launchDetails && launchDetails.launchLatest.details}</p>
+          </div>
         )}
       </Card>
       <Button />
