@@ -78,5 +78,5 @@ Details of the tech stack that has been used.
 
 - **Azania Mokhampane** <azaniam04@gmail.com>
 
-<img src="/img/desktop-view.png" alt="snap shot">
-<img src="/img/mobile-view.png" alt="snap shot">
+<img src="https://github.com/Azania-Mokhampane/spaceX-rockets/blob/dev/public/img/desktop-view.png" alt="snap shot">
+<img src="https://github.com/Azania-Mokhampane/spaceX-rockets/blob/dev/public/img/mobile-view.png" alt="snap shot">
