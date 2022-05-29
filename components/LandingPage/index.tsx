@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import Card from "../UI/card";
 import { SPACEX_LAUNCH_DATES } from "../../graphql/queries";
 import Loader from "../UI/loader";
+import Image from "next/image";
 
 interface ILAUNCHDATE {
   launchLatest: {
@@ -48,36 +49,46 @@ const LandingPage = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-center md:justify-around items-center ">
           <div className="w-56 md:w-96">
-            <img
-              className="block md:hidden"
-              src="/icons/Rocket_Boy.svg"
-              alt="A boy on a rocket"
-            />
-            <img
-              className="hidden md:block"
-              src="/icons/Rocket_Launch.svg"
-              alt="A Rocket in space"
-            />
+            <div className="block md:hidden">
+              <Image
+                width={400}
+                height={300}
+                src="/icons/Rocket_Boy.svg"
+                alt="A boy on a rocket"
+              />
+            </div>
+            <div className="hidden md:block">
+              <Image
+                src="/icons/Rocket_Launch.svg"
+                width={400}
+                height={300}
+                alt="A Rocket in space"
+              />
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-5 p-5 md:w-80 font-semibold md:flex-row">
-            <div className="bg-gray-200 p-5 text-center rounded-md ">
-              <Link href="/last-launch">
-                <h1 className="text-lg cursor-pointer">Last Rocket Launch</h1>
-              </Link>
-              <LaunchDate
-                date={
-                  LaunchesData && LaunchesData.launchLatest.launch_date_local
-                }
-              />
-            </div>
-            <div className="bg-gray-200 p-5 text-center rounded-md ">
-              <Link href="/next-launch">
-                <h1 className="text-lg cursor-pointer">Next Rocket Launch</h1>
-              </Link>
-              <LaunchDate
-                date={LaunchesData && LaunchesData.launchNext.launch_date_local}
-              />
-            </div>
+            <Link href="/last-launch">
+              <div className="bg-gray-200 p-5 text-center rounded-md cursor-pointer">
+                <h1 className="text-lg ">Last Rocket Launch</h1>
+
+                <LaunchDate
+                  date={
+                    LaunchesData && LaunchesData.launchLatest.launch_date_local
+                  }
+                />
+              </div>
+            </Link>
+            <Link href="/next-launch">
+              <div className="bg-gray-200 p-5 text-center rounded-md cursor-pointer">
+                <h1 className="text-lg ">Next Rocket Launch</h1>
+
+                <LaunchDate
+                  date={
+                    LaunchesData && LaunchesData.launchNext.launch_date_local
+                  }
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </Card>
