@@ -6,7 +6,7 @@ import Card from "../components/UI/card";
 import Button from "../components/UI/button";
 import Loader from "../components/UI/loader";
 import Image from "next/image";
-import { IROCKETS } from "./types/index";
+import { IROCKETS } from "../types/index";
 
 const LastLaunch = () => {
   const [launchDetails, setLaunchDetails] = useState<
