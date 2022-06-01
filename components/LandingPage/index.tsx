@@ -7,7 +7,7 @@ import Card from "../UI/card";
 import { SPACEX_LAUNCHES } from "../../graphql/queries";
 import Loader from "../UI/loader";
 import Image from "next/image";
-import { IROCKETS } from "../../pages/types/index";
+import { IROCKETS } from "../../types/index";
 
 const LandingPage = () => {
   const [LaunchesData, setLaunchesData] = useState<
