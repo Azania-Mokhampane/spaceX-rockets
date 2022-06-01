@@ -4,25 +4,17 @@ import NavBar from "../NavBar/navbar";
 import LaunchDate from "../UI/launchDate";
 import { useQuery } from "@apollo/client";
 import Card from "../UI/card";
-import { SPACEX_LAUNCH_DATES } from "../../graphql/queries";
+import { SPACEX_LAUNCHES } from "../../graphql/queries";
 import Loader from "../UI/loader";
 import Image from "next/image";
-
-interface ILAUNCHDATE {
-  launchLatest: {
-    launch_date_local?: string;
-  };
-  launchNext: {
-    launch_date_local?: string;
-  };
-}
+import { IROCKETS } from "../../pages/types/index";
 
 const LandingPage = () => {
   const [LaunchesData, setLaunchesData] = useState<
-    ILAUNCHDATE | null | undefined
+    IROCKETS | null | undefined
   >();
 
-  const { data, loading, error } = useQuery(SPACEX_LAUNCH_DATES);
+  const { data, loading, error } = useQuery(SPACEX_LAUNCHES);
 
   useEffect(() => {
     if (data) {
