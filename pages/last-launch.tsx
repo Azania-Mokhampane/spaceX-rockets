@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { SPACEX_LATEST_LAUNCH } from "../graphql/queries";
+import { SPACEX_LAUNCHES } from "../graphql/queries";
 import NavBar from "../components/NavBar/navbar";
 import Card from "../components/UI/card";
 import Button from "../components/UI/button";
 import Loader from "../components/UI/loader";
 import Image from "next/image";
-
-interface ILASTLAUNCH {
-  launchLatest: {
-    details?: string;
-  };
-}
+import { IROCKETS } from "./types/index";
 
 const LastLaunch = () => {
   const [launchDetails, setLaunchDetails] = useState<
-    ILASTLAUNCH | null | undefined
+    IROCKETS | null | undefined
   >();
 
-  const { loading, data, error } = useQuery(SPACEX_LATEST_LAUNCH);
+  const { loading, data, error } = useQuery(SPACEX_LAUNCHES);
 
   useEffect(() => {
     if (data) {
