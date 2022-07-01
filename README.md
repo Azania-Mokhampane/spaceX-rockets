@@ -41,12 +41,12 @@ cd spaceX-rockets
 
 Install the projects dependencies
 
-```bash
+```
 yarn
 ```
 
 Start the projects development server
-```bash
+```
 yarn dev
 ````
 
