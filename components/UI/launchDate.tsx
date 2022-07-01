@@ -1,7 +1,11 @@
 import React from "react";
 
-const LaunchDate = (props: any) => {
-  const setDate = new Date(props.date);
+interface DateProps {
+  date: string | null | undefined;
+}
+
+const LaunchDate = (props: DateProps) => {
+  const setDate = new Date(props.date as Date | string);
   const year = setDate.getFullYear();
   const month = setDate.toLocaleString("en-US", { month: "long" });
   const day = setDate.getDate();
