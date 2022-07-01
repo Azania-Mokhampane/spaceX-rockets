@@ -8,6 +8,7 @@ import { SPACEX_LAUNCHES } from "../../graphql/queries";
 import Loader from "../UI/loader";
 import Image from "next/image";
 import { IROCKETS } from "../../types/index";
+import Error from "../UI/Error";
 
 const LandingPage = () => {
   const [LaunchesData, setLaunchesData] = useState<
@@ -29,7 +30,7 @@ const LandingPage = () => {
     );
   }
   if (error) {
-    return <div>Error fetching data</div>;
+    return <Error />;
   }
 
   return (
