@@ -7,6 +7,7 @@ import Button from "../components/UI/button";
 import Loader from "../components/UI/loader";
 import Image from "next/image";
 import { IROCKETS } from "../types/index";
+import Error from "../components/UI/Error";
 
 const LastLaunch = () => {
   const [launchDetails, setLaunchDetails] = useState<
@@ -25,7 +26,7 @@ const LastLaunch = () => {
     return <Loader />;
   }
   if (error) {
-    return <div>Error fetching data</div>;
+    return <Error />;
   }
 
   return (
